@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 import 'views/playlist_view.dart';
 import 'views/map_view.dart';
 
-Future<void> main() async {
-  try {
-    await dotenv.load(fileName: ".env");
-  } catch (e) {
-    print('Failed to load .env file: $e');
-  }
+void main() async {
   runApp(MyApp());
 }
 
