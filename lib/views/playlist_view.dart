@@ -1,35 +1,13 @@
 import 'package:flutter/material.dart';
 
-class PlaylistView extends StatelessWidget {
-  final List<Band> bands = [
-    Band(
-      name: "Band A",
-      currentSong: "Song 1",
-      events: [
-        Event(
-          venueName: "Venue A",
-          dateTime: DateTime.now().add(Duration(days: 2)),
-          latitude: 45.5017,
-          longitude: -73.5673,
-          price: 20,
-        ),
-      ],
-    ),
-    Band(
-      name: "Band B",
-      currentSong: "Song 2",
-      events: [
-        Event(
-          venueName: "Venue B",
-          dateTime: DateTime.now().add(Duration(days: 5)),
-          latitude: 45.5088,
-          longitude: -73.5618,
-          price: 15,
-        ),
-      ],
-    ),
-  ];
+import '../data/test_data.dart';
 
+class PlaylistView extends StatelessWidget {
+  final List<Band> bands;
+  final int currentTrack;
+
+  const PlaylistView(
+      {super.key, required this.bands, required this.currentTrack});
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -42,6 +20,8 @@ class PlaylistView extends StatelessWidget {
           title: Text('${band.name} - ${band.currentSong}'),
           subtitle: Text(
               '${nextEvent.venueName} - ${nextEvent.dateTime.toLocal()} - \$${nextEvent.price ?? "Free"}'),
+          tileColor:
+              index == currentTrack ? Colors.blue.withOpacity(0.2) : null,
           trailing: Icon(Icons.arrow_forward),
           onTap: () {
             // Navigate to map or show more details
@@ -50,32 +30,4 @@ class PlaylistView extends StatelessWidget {
       },
     );
   }
-}
-
-class Band {
-  final String name;
-  final String currentSong;
-  final List<Event> events;
-
-  Band({
-    required this.name,
-    required this.currentSong,
-    required this.events,
-  });
-}
-
-class Event {
-  final String venueName;
-  final DateTime dateTime;
-  final double latitude;
-  final double longitude;
-  final double? price;
-
-  Event({
-    required this.venueName,
-    required this.dateTime,
-    required this.latitude,
-    required this.longitude,
-    this.price,
-  });
 }
