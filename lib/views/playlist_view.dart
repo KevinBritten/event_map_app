@@ -5,9 +5,14 @@ import '../data/test_data.dart';
 class PlaylistView extends StatelessWidget {
   final List<Band> bands;
   final int currentTrack;
+  final Function(int) onTrackSelected;
 
-  const PlaylistView(
-      {super.key, required this.bands, required this.currentTrack});
+  const PlaylistView({
+    super.key,
+    required this.bands,
+    required this.currentTrack,
+    required this.onTrackSelected,
+  });
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
@@ -24,7 +29,7 @@ class PlaylistView extends StatelessWidget {
               index == currentTrack ? Colors.blue.withOpacity(0.2) : null,
           trailing: Icon(Icons.arrow_forward),
           onTap: () {
-            // Navigate to map or show more details
+            onTrackSelected(index); // Notify parent widget of selection
           },
         );
       },

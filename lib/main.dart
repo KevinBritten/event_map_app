@@ -38,6 +38,11 @@ class _HomeScreenState extends State<HomeScreen> {
       PlaylistView(
         bands: bands,
         currentTrack: _trackIndex,
+        onTrackSelected: (index) {
+          setState(() {
+            _trackIndex = index;
+          });
+        },
       ),
       MapView(event: bands[_trackIndex].events[0]),
     ];
