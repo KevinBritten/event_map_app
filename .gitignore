@@ -140,3 +140,4 @@ app.*.symbols
 !.vscode/settings.json
 
 .env
+android/app/src/main/res/values/secrets.xml
