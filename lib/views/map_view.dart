@@ -2,7 +2,9 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import '../data/test_data.dart'; // Ensure correct path
+import '../data/test_data.dart';
+import '../models/event.dart';
+import '../models/band.dart';
 
 class MapView extends StatefulWidget {
   final Event? event;

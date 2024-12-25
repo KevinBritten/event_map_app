@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../data/test_data.dart';
+import '../models/event.dart';
+import '../models/band.dart';
 
 class PlaylistView extends StatelessWidget {
   final List<Band> bands;

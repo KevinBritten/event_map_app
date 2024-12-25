@@ -1,34 +1,8 @@
 // lib/data/dummy_data.dart
 
 import 'package:flutter/material.dart';
-
-class Band {
-  final String name;
-  final String currentSong;
-  final List<Event> events;
-
-  Band({
-    required this.name,
-    required this.currentSong,
-    required this.events,
-  });
-}
-
-class Event {
-  final String venueName;
-  final DateTime dateTime;
-  final double latitude;
-  final double longitude;
-  final double? price;
-
-  Event({
-    required this.venueName,
-    required this.dateTime,
-    required this.latitude,
-    required this.longitude,
-    this.price,
-  });
-}
+import '../models/event.dart';
+import '../models/band.dart';
 
 // Dummy data for bands
 final List<Band> bandsList = [

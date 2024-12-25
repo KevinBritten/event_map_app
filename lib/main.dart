@@ -5,6 +5,9 @@ import 'views/map_view.dart';
 
 import 'data/test_data.dart';
 
+import 'models/event.dart';
+import 'models/band.dart';
+
 void main() async {
   runApp(MyApp());
 }
