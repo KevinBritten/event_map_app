@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/gestures.dart';
 
 import '../data/test_data.dart';
 import '../models/event.dart';
@@ -25,7 +26,33 @@ class PlaylistView extends StatelessWidget {
         final nextEvent = band.events.first;
 
         return ListTile(
-          title: Text('${band.name} - ${band.currentSong}'),
+          title: RichText(
+            text: TextSpan(
+              children: [
+                TextSpan(
+                  text: band.name,
+                  style: const TextStyle(
+                    color: Colors.blue, // Highlight clickable text
+                    fontWeight: FontWeight.bold,
+                    decoration: TextDecoration
+                        .underline, // Add underline to indicate link
+                  ),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      Navigator.pushNamed(
+                        context,
+                        '/band', // Navigate to BandPage
+                        arguments: band, // Pass the band as an argument
+                      );
+                    },
+                ),
+                TextSpan(
+                  text: ' - ${band.currentSong}',
+                  style: const TextStyle(color: Colors.black),
+                ),
+              ],
+            ),
+          ),
           subtitle: Text(
               '${nextEvent.venue.name} - ${nextEvent.dateTime.toLocal()} - \$${nextEvent.price ?? "Free"}'),
           tileColor:

@@ -4,6 +4,7 @@ import 'views/playlist_view.dart';
 import 'views/map_view.dart';
 
 import 'views/event_view.dart';
+import 'views/band_view.dart';
 
 import 'data/test_data.dart';
 
@@ -24,7 +25,10 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: HomeScreen(),
-      routes: {'/event': (context) => EventPage()},
+      routes: {
+        '/event': (context) => EventPage(),
+        '/band': (context) => BandPage()
+      },
     );
   }
 }
