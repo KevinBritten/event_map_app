@@ -30,7 +30,16 @@ class PlaylistView extends StatelessWidget {
               '${nextEvent.venue.name} - ${nextEvent.dateTime.toLocal()} - \$${nextEvent.price ?? "Free"}'),
           tileColor:
               index == currentTrack ? Colors.blue.withOpacity(0.2) : null,
-          trailing: Icon(Icons.arrow_forward),
+          trailing: IconButton(
+            icon: Icon(Icons.arrow_forward),
+            onPressed: () {
+              Navigator.pushNamed(
+                context,
+                '/event', // The named route for EventPage
+                arguments: nextEvent, // Pass the Event object as an argument
+              );
+            },
+          ),
           onTap: () {
             onTrackSelected(index); // Notify parent widget of selection
           },

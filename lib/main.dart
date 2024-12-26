@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'views/playlist_view.dart';
 import 'views/map_view.dart';
 
+import 'views/event_view.dart';
+
 import 'data/test_data.dart';
 
 import 'models/event.dart';
@@ -22,6 +24,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: HomeScreen(),
+      routes: {'/event': (context) => EventPage()},
     );
   }
 }
