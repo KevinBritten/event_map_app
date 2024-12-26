@@ -1,5 +1,61 @@
 import '../models/event.dart';
 import '../models/band.dart';
+import '../models/venue.dart';
+
+// Venues
+final venueRockArena = Venue(
+  name: "Rock Arena",
+  latitude: 40.7128,
+  longitude: -74.0060,
+);
+
+final venueJazzClub = Venue(
+  name: "Jazz Club",
+  latitude: 34.0522,
+  longitude: -118.2437,
+);
+
+final venueJazzLounge = Venue(
+  name: "Jazz Lounge",
+  latitude: 51.5074,
+  longitude: -0.1278,
+);
+
+final venuePopStadium = Venue(
+  name: "Pop Stadium",
+  latitude: 48.8566,
+  longitude: 2.3522,
+);
+
+final venueIndieBar = Venue(
+  name: "Indie Bar",
+  latitude: 41.8781,
+  longitude: -87.6298,
+);
+
+final venueEDMClub = Venue(
+  name: "EDM Club",
+  latitude: 35.6895,
+  longitude: 139.6917,
+);
+
+final venueCountryHall = Venue(
+  name: "Country Hall",
+  latitude: 39.7392,
+  longitude: -104.9903,
+);
+
+final venueHipHopClub = Venue(
+  name: "Hip Hop Club",
+  latitude: 34.0522,
+  longitude: -118.2437,
+);
+
+final venueMetalArena = Venue(
+  name: "Metal Arena",
+  latitude: 37.7749,
+  longitude: -122.4194,
+);
 
 // Existing bands
 final bandRockers =
@@ -27,79 +83,61 @@ final bandBluesLegends =
 final bandSynthMasters =
     Band(name: "Synth Masters", currentSong: "Synth Wave", events: []);
 
-// Events with updated bands
+// Events with updated venues and bands
 final List<Event> eventsList = [
   Event(
-    venueName: "Rock Arena",
+    venue: venueRockArena,
     dateTime: DateTime.now().add(Duration(days: 1)),
-    latitude: 40.7128,
-    longitude: -74.0060,
-    price: 30,
     bands: [bandRockers, bandMetalHeads],
+    price: 30,
   ),
   Event(
-    venueName: "Jazz Club",
+    venue: venueJazzClub,
     dateTime: DateTime.now().add(Duration(days: 10)),
-    latitude: 34.0522,
-    longitude: -118.2437,
-    price: 25,
     bands: [bandRockers, bandBluesLegends],
-  ),
-  Event(
-    venueName: "Jazz Lounge",
-    dateTime: DateTime.now().add(Duration(days: 3)),
-    latitude: 51.5074,
-    longitude: -0.1278,
-    price: 20,
-    bands: [bandJazzMasters, bandSoulSingers],
-  ),
-  Event(
-    venueName: "Pop Stadium",
-    dateTime: DateTime.now().add(Duration(days: 5)),
-    latitude: 48.8566,
-    longitude: 2.3522,
-    price: 50,
-    bands: [bandPopStars, bandSynthMasters],
-  ),
-  Event(
-    venueName: "Indie Bar",
-    dateTime: DateTime.now().add(Duration(days: 7)),
-    latitude: 41.8781,
-    longitude: -87.6298,
-    price: 15,
-    bands: [bandIndieVibes, bandSoulSingers],
-  ),
-  Event(
-    venueName: "EDM Club",
-    dateTime: DateTime.now().add(Duration(days: 4)),
-    latitude: 35.6895,
-    longitude: 139.6917,
-    price: 40,
-    bands: [bandElectronicBeats, bandSynthMasters],
-  ),
-  Event(
-    venueName: "Country Hall",
-    dateTime: DateTime.now().add(Duration(days: 6)),
-    latitude: 39.7392,
-    longitude: -104.9903,
-    price: 20,
-    bands: [bandCountryRoads],
-  ),
-  Event(
-    venueName: "Hip Hop Club",
-    dateTime: DateTime.now().add(Duration(days: 2)),
-    latitude: 34.0522,
-    longitude: -118.2437,
     price: 25,
-    bands: [bandHipHopHeroes, bandSynthMasters],
   ),
   Event(
-    venueName: "Metal Arena",
+    venue: venueJazzLounge,
+    dateTime: DateTime.now().add(Duration(days: 3)),
+    bands: [bandJazzMasters, bandSoulSingers],
+    price: 20,
+  ),
+  Event(
+    venue: venuePopStadium,
+    dateTime: DateTime.now().add(Duration(days: 5)),
+    bands: [bandPopStars, bandSynthMasters],
+    price: 50,
+  ),
+  Event(
+    venue: venueIndieBar,
+    dateTime: DateTime.now().add(Duration(days: 7)),
+    bands: [bandIndieVibes, bandSoulSingers],
+    price: 15,
+  ),
+  Event(
+    venue: venueEDMClub,
+    dateTime: DateTime.now().add(Duration(days: 4)),
+    bands: [bandElectronicBeats, bandSynthMasters],
+    price: 40,
+  ),
+  Event(
+    venue: venueCountryHall,
+    dateTime: DateTime.now().add(Duration(days: 6)),
+    bands: [bandCountryRoads],
+    price: 20,
+  ),
+  Event(
+    venue: venueHipHopClub,
+    dateTime: DateTime.now().add(Duration(days: 2)),
+    bands: [bandHipHopHeroes, bandSynthMasters],
+    price: 25,
+  ),
+  Event(
+    venue: venueMetalArena,
     dateTime: DateTime.now().add(Duration(days: 8)),
-    latitude: 37.7749,
-    longitude: -122.4194,
-    price: 35,
     bands: [bandMetalHeads, bandRockers],
+    price: 35,
   ),
 ];
 

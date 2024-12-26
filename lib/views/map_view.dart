@@ -5,6 +5,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../data/test_data.dart';
 import '../models/event.dart';
 import '../models/band.dart';
+import '../models/venue.dart';
 
 class MapView extends StatefulWidget {
   final Event? event;
@@ -38,10 +39,10 @@ class _MapViewState extends State<MapView> {
 
   void _addMarker(Event event) {
     final marker = Marker(
-      markerId: MarkerId(event.venueName),
-      position: LatLng(event.latitude, event.longitude),
+      markerId: MarkerId(event.venue.name),
+      position: LatLng(event.venue.latitude, event.venue.longitude),
       infoWindow: InfoWindow(
-        title: event.venueName,
+        title: event.venue.name,
         snippet: '${event.dateTime.toLocal()} - \$${event.price ?? "Free"}',
       ),
       icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure),
@@ -57,7 +58,7 @@ class _MapViewState extends State<MapView> {
     _controller.animateCamera(
       CameraUpdate.newCameraPosition(
         CameraPosition(
-          target: LatLng(event.latitude, event.longitude),
+          target: LatLng(event.venue.latitude, event.venue.longitude),
           zoom: 14,
         ),
       ),

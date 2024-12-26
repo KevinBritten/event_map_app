@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../data/test_data.dart';
 import '../models/event.dart';
 import '../models/band.dart';
+import '../models/venue.dart';
 
 class PlaylistView extends StatelessWidget {
   final List<Band> bands;
@@ -26,7 +27,7 @@ class PlaylistView extends StatelessWidget {
         return ListTile(
           title: Text('${band.name} - ${band.currentSong}'),
           subtitle: Text(
-              '${nextEvent.venueName} - ${nextEvent.dateTime.toLocal()} - \$${nextEvent.price ?? "Free"}'),
+              '${nextEvent.venue.name} - ${nextEvent.dateTime.toLocal()} - \$${nextEvent.price ?? "Free"}'),
           tileColor:
               index == currentTrack ? Colors.blue.withOpacity(0.2) : null,
           trailing: Icon(Icons.arrow_forward),
