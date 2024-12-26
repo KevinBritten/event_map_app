@@ -9,6 +9,7 @@ import 'models/event.dart';
 import 'models/band.dart';
 
 void main() async {
+  addEventsToBands(eventsList); //TODO: remove when using database.
   runApp(MyApp());
 }
 
