@@ -86,54 +86,63 @@ final bandSynthMasters =
 // Events with updated venues and bands
 final List<Event> eventsList = [
   Event(
+    title: "Rock Show",
     venue: venueRockArena,
     dateTime: DateTime.now().add(Duration(days: 1)),
     bands: [bandRockers, bandMetalHeads],
     price: 30,
   ),
   Event(
+    title: "Jazz Show",
     venue: venueJazzClub,
     dateTime: DateTime.now().add(Duration(days: 10)),
     bands: [bandRockers, bandBluesLegends],
     price: 25,
   ),
   Event(
+    title: "Jazz Nite",
     venue: venueJazzLounge,
     dateTime: DateTime.now().add(Duration(days: 3)),
     bands: [bandJazzMasters, bandSoulSingers],
     price: 20,
   ),
   Event(
+    title: "Pop Show of the Month",
     venue: venuePopStadium,
     dateTime: DateTime.now().add(Duration(days: 5)),
     bands: [bandPopStars, bandSynthMasters],
     price: 50,
   ),
   Event(
+    title: "Rock Show Vol.2",
     venue: venueIndieBar,
     dateTime: DateTime.now().add(Duration(days: 7)),
     bands: [bandIndieVibes, bandSoulSingers],
     price: 15,
   ),
   Event(
+    title: "EDM Show",
     venue: venueEDMClub,
     dateTime: DateTime.now().add(Duration(days: 4)),
     bands: [bandElectronicBeats, bandSynthMasters],
     price: 40,
   ),
   Event(
+    title: "Country Show",
     venue: venueCountryHall,
     dateTime: DateTime.now().add(Duration(days: 6)),
     bands: [bandCountryRoads],
     price: 20,
   ),
   Event(
+    title: "Hop Hop Show",
     venue: venueHipHopClub,
     dateTime: DateTime.now().add(Duration(days: 2)),
     bands: [bandHipHopHeroes, bandSynthMasters],
     price: 25,
   ),
   Event(
+    title: "Metal Show",
     venue: venueMetalArena,
     dateTime: DateTime.now().add(Duration(days: 8)),
     bands: [bandMetalHeads, bandRockers],

@@ -54,7 +54,7 @@ class PlaylistView extends StatelessWidget {
             ),
           ),
           subtitle: Text(
-              '${nextEvent.venue.name} - ${nextEvent.dateTime.toLocal()} - \$${nextEvent.price ?? "Free"}'),
+              '${nextEvent.title} - ${nextEvent.venue.name} - ${nextEvent.dateTime.toLocal()} - \$${nextEvent.price ?? "Free"}'),
           tileColor:
               index == currentTrack ? Colors.blue.withOpacity(0.2) : null,
           trailing: IconButton(
