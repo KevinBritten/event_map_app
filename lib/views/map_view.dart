@@ -1,5 +1,3 @@
-// lib/views/map_view.dart
-
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../data/test_data.dart';
@@ -49,7 +47,7 @@ class _MapViewState extends State<MapView> {
     );
 
     setState(() {
-      _markers.clear(); // Remove existing markers
+      _markers.clear();
       _markers.add(marker);
     });
   }

@@ -3,7 +3,7 @@ import 'venue.dart';
 
 class Event {
   final String title;
-  final Venue venue; // Reference to a Venue object
+  final Venue venue;
   final DateTime dateTime;
   final double? price;
   final List<Band> bands;

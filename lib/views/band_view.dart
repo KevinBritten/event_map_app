@@ -7,7 +7,7 @@ class BandPage extends StatelessWidget {
     final Band band = ModalRoute.of(context)!.settings.arguments as Band;
     return Scaffold(
       appBar: AppBar(
-        title: Text(band.name), // Band's name as the title
+        title: Text(band.name),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -36,9 +36,8 @@ class BandPage extends StatelessWidget {
                     onTap: () {
                       Navigator.pushNamed(
                         context,
-                        '/event', // Navigate to EventPage
-                        arguments:
-                            event, // Pass the selected event as an argument
+                        '/event',
+                        arguments: event,
                       );
                     },
                   );

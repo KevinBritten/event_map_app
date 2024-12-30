@@ -32,17 +32,16 @@ class PlaylistView extends StatelessWidget {
                 TextSpan(
                   text: band.name,
                   style: const TextStyle(
-                    color: Colors.blue, // Highlight clickable text
+                    color: Colors.blue,
                     fontWeight: FontWeight.bold,
-                    decoration: TextDecoration
-                        .underline, // Add underline to indicate link
+                    decoration: TextDecoration.underline,
                   ),
                   recognizer: TapGestureRecognizer()
                     ..onTap = () {
                       Navigator.pushNamed(
                         context,
-                        '/band', // Navigate to BandPage
-                        arguments: band, // Pass the band as an argument
+                        '/band',
+                        arguments: band,
                       );
                     },
                 ),
@@ -62,13 +61,13 @@ class PlaylistView extends StatelessWidget {
             onPressed: () {
               Navigator.pushNamed(
                 context,
-                '/event', // The named route for EventPage
-                arguments: nextEvent, // Pass the Event object as an argument
+                '/event',
+                arguments: nextEvent,
               );
             },
           ),
           onTap: () {
-            onTrackSelected(index); // Notify parent widget of selection
+            onTrackSelected(index);
           },
         );
       },

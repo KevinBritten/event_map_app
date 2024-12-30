@@ -9,7 +9,7 @@ class EventPage extends StatelessWidget {
     final Event event = ModalRoute.of(context)!.settings.arguments as Event;
     return Scaffold(
       appBar: AppBar(
-        title: Text(event.title), // Display the venue name as the title
+        title: Text(event.title),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -45,17 +45,16 @@ class EventPage extends StatelessWidget {
                     text: TextSpan(
                       text: band.name,
                       style: const TextStyle(
-                        color: Colors.blue, // Highlight clickable text
+                        color: Colors.blue,
                         fontWeight: FontWeight.bold,
-                        decoration: TextDecoration
-                            .underline, // Add underline to indicate link
+                        decoration: TextDecoration.underline,
                       ),
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
                           Navigator.pushNamed(
                             context,
-                            '/band', // Navigate to BandPage
-                            arguments: band, // Pass the band as an argument
+                            '/band',
+                            arguments: band,
                           );
                         },
                     ),
