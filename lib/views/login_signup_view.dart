@@ -1,17 +1,34 @@
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(MyApp());
-}
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Login/Signup Slider',
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: LoginSignupPage(),
+Future<void> createUser({
+  required String email,
+  required String password,
+  required String username,
+}) async {
+  try {
+    print("making user");
+    UserCredential userCredential =
+        await FirebaseAuth.instance.createUserWithEmailAndPassword(
+      email: email,
+      password: password,
     );
+    print("user made");
+    User? user = userCredential.user;
+    if (user == null) throw Exception('User is null');
+    print("printing user");
+    print(user);
+    await FirebaseFirestore.instance.collection('users').doc(user.uid).set({
+      'username': username,
+      'email': email,
+      'createdAt': FieldValue.serverTimestamp(),
+    });
+
+    print('User created with UID: ${user.uid} and username: $username');
+  } on Exception catch (e) {
+    print('Error creating user: $e');
   }
 }
 
@@ -114,7 +131,6 @@ class _LoginSignupPageState extends State<LoginSignupPage>
               ),
             ),
           ),
-          // Sign Up Tab
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Form(
@@ -161,8 +177,13 @@ class _LoginSignupPageState extends State<LoginSignupPage>
                   ),
                   SizedBox(height: 24),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_signupFormKey.currentState!.validate()) {
+                        await createUser(
+                            email: _signupEmailController.text,
+                            password: _signupPasswordController.text,
+                            username: _signupUsernameController.text);
+
                         print(
                             'Signed up as: ${_signupUsernameController.text}');
                       }
