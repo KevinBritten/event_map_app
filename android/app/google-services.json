@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "715662524015",
+    "project_id": "eventmapapp-cee9b",
+    "storage_bucket": "eventmapapp-cee9b.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:715662524015:android:fecff1f802377eb364179a",
+        "android_client_info": {
+          "package_name": "com.example.event_map_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQAv2wj4XLT6e6X4FouhT7jQ1aI3DFp6c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -11,8 +11,26 @@ import 'data/test_data.dart';
 import 'models/event.dart';
 import 'models/band.dart';
 
+import 'package:firebase_core/firebase_core.dart';
+
+Future<void> testFirebaseCore() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  final apps = Firebase.apps;
+  print(apps);
+  if (apps.isNotEmpty) {
+    print('Firebase is initialized! Found ${apps.length} app(s).');
+    print('First app name: ${apps.first.name}');
+  } else {
+    print('No Firebase apps found. Something is wrong.');
+  }
+}
+
 void main() async {
+  print("tested");
+
   addEventsToBands(eventsList); //TODO: remove when using database.
+  await testFirebaseCore();
   runApp(MyApp());
 }
 
