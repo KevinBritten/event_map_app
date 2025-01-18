@@ -5,6 +5,7 @@ import 'views/map_view.dart';
 
 import 'views/event_view.dart';
 import 'views/band_view.dart';
+import 'views/login_signup_view.dart';
 
 import 'data/test_data.dart';
 
@@ -16,14 +17,6 @@ import 'package:firebase_core/firebase_core.dart';
 Future<void> testFirebaseCore() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
-  final apps = Firebase.apps;
-  print(apps);
-  if (apps.isNotEmpty) {
-    print('Firebase is initialized! Found ${apps.length} app(s).');
-    print('First app name: ${apps.first.name}');
-  } else {
-    print('No Firebase apps found. Something is wrong.');
-  }
 }
 
 void main() async {
@@ -45,7 +38,8 @@ class MyApp extends StatelessWidget {
       home: HomeScreen(),
       routes: {
         '/event': (context) => EventPage(),
-        '/band': (context) => BandPage()
+        '/band': (context) => BandPage(),
+        '/login_signup': (context) => LoginSignupPage()
       },
     );
   }
@@ -110,9 +104,13 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _viewIndex,
         onTap: (index) {
-          setState(() {
-            _viewIndex = index;
-          });
+          if (index == 2) {
+            Navigator.pushNamed(context, '/login_signup');
+          } else {
+            setState(() {
+              _viewIndex = index;
+            });
+          }
         },
         items: [
           BottomNavigationBarItem(
@@ -122,6 +120,10 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.map),
             label: 'Map',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.login),
+            label: 'Login/Signup',
           ),
         ],
       ),
