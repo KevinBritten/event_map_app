@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-Future<void> createUser({
+Future<void> signUp({
   required String email,
   required String password,
   required String username,
@@ -32,6 +32,25 @@ Future<void> createUser({
   }
 }
 
+Future<void> signIn({required String email, required String password}) async {
+  try {
+    await FirebaseAuth.instance
+        .signInWithEmailAndPassword(email: email, password: password);
+    print('User signed in successfully!');
+  } catch (e) {
+    print('Sign in error: $e');
+  }
+}
+
+Future<void> signOut() async {
+  try {
+    await FirebaseAuth.instance.signOut();
+    print('User signed out successfully!');
+  } catch (e) {
+    print('Error signing out: $e');
+  }
+}
+
 class LoginSignupPage extends StatefulWidget {
   @override
   _LoginSignupPageState createState() => _LoginSignupPageState();
@@ -44,8 +63,7 @@ class _LoginSignupPageState extends State<LoginSignupPage>
   final _loginFormKey = GlobalKey<FormState>();
   final _signupFormKey = GlobalKey<FormState>();
 
-  final TextEditingController _loginUsernameController =
-      TextEditingController();
+  final TextEditingController _loginEmailController = TextEditingController();
   final TextEditingController _loginPasswordController =
       TextEditingController();
 
@@ -64,7 +82,7 @@ class _LoginSignupPageState extends State<LoginSignupPage>
   @override
   void dispose() {
     _tabController.dispose();
-    _loginUsernameController.dispose();
+    _loginEmailController.dispose();
     _loginPasswordController.dispose();
     _signupUsernameController.dispose();
     _signupPasswordController.dispose();
@@ -97,11 +115,11 @@ class _LoginSignupPageState extends State<LoginSignupPage>
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   TextFormField(
-                    controller: _loginUsernameController,
-                    decoration: InputDecoration(labelText: 'Username'),
+                    controller: _loginEmailController,
+                    decoration: InputDecoration(labelText: 'Email'),
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'Please enter your username';
+                        return 'Please enter your email';
                       }
                       return null;
                     },
@@ -120,12 +138,24 @@ class _LoginSignupPageState extends State<LoginSignupPage>
                   ),
                   SizedBox(height: 24),
                   ElevatedButton(
-                    onPressed: () {
+                    onPressed: () async {
                       if (_loginFormKey.currentState!.validate()) {
-                        print('Logged in as: ${_loginUsernameController.text}');
+                        await signIn(
+                            email: _loginEmailController.text.trim(),
+                            password: _loginPasswordController.text);
                       }
+                      print("user is: ");
+                      print(FirebaseAuth.instance.currentUser!);
                     },
                     child: Text('Login'),
+                  ),
+                  ElevatedButton(
+                    onPressed: () async {
+                      await signOut();
+                      print("user is: ");
+                      print(FirebaseAuth.instance.currentUser);
+                    },
+                    child: Text('Logout'),
                   ),
                 ],
               ),
@@ -179,7 +209,7 @@ class _LoginSignupPageState extends State<LoginSignupPage>
                   ElevatedButton(
                     onPressed: () async {
                       if (_signupFormKey.currentState!.validate()) {
-                        await createUser(
+                        await signUp(
                             email: _signupEmailController.text,
                             password: _signupPasswordController.text,
                             username: _signupUsernameController.text);
