@@ -45,35 +45,22 @@ Future<void> signIn({required String email, required String password}) async {
   }
 }
 
-Future<void> signOut() async {
-  try {
-    await FirebaseAuth.instance.signOut();
-    print('User signed out successfully!');
-  } catch (e) {
-    print('Error signing out: $e');
-  }
-}
-
 Future<void> setUserData(BuildContext context) async {
   User? currentUser = FirebaseAuth.instance.currentUser;
-  if (currentUser == null) {
-    context.read<UserProvider>().clearUser();
-  } else {
-    try {
-      String uid = currentUser.uid;
-      DocumentSnapshot<Map<String, dynamic>> userDataSnapshot =
-          await FirebaseFirestore.instance.collection('users').doc(uid).get();
+  try {
+    String uid = currentUser!.uid;
+    DocumentSnapshot<Map<String, dynamic>> userDataSnapshot =
+        await FirebaseFirestore.instance.collection('users').doc(uid).get();
 
-      Map<String, dynamic>? userData = userDataSnapshot.data();
+    Map<String, dynamic>? userData = userDataSnapshot.data();
 
-      if (userData == null) {
-        throw Exception("User data not found in Firestore.");
-      }
-
-      context.read<UserProvider>().setUser(userData);
-    } catch (e) {
-      print("Error fetching user data: $e");
+    if (userData == null) {
+      throw Exception("User data not found in Firestore.");
     }
+
+    context.read<UserProvider>().setUser(userData);
+  } catch (e) {
+    print("Error fetching user data: $e");
   }
 }
 
@@ -102,7 +89,16 @@ class _LoginSignupPageState extends State<LoginSignupPage>
   @override
   void initState() {
     super.initState();
-    _tabController = TabController(length: 2, vsync: this);
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      final int? defaultTabIndex =
+          ModalRoute.of(context)?.settings.arguments as int?;
+      _tabController = TabController(
+        length: 2,
+        vsync: this,
+        initialIndex: defaultTabIndex ?? 0,
+      );
+      setState(() {});
+    });
   }
 
   @override
@@ -177,16 +173,6 @@ class _LoginSignupPageState extends State<LoginSignupPage>
                       print(FirebaseAuth.instance.currentUser!);
                     },
                     child: Text('Login'),
-                  ),
-                  ElevatedButton(
-                    onPressed: () async {
-                      await signOut();
-                      await setUserData(context);
-                      Navigator.of(context).popUntil((route) => route.isFirst);
-                      print("user is: ");
-                      print(FirebaseAuth.instance.currentUser);
-                    },
-                    child: Text('Logout'),
                   ),
                 ],
               ),

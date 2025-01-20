@@ -3,16 +3,14 @@ import 'package:provider/provider.dart';
 
 import '../providers/user_provider.dart';
 
+import '../components/menu/logged_out_menu.dart';
+import '../components/menu/logged_in_menu.dart';
+
 import 'playlist_view.dart';
 import 'map_view.dart';
 
-import 'event_view.dart';
-import 'band_view.dart';
-import 'login_signup_view.dart';
-
 import '../data/test_data.dart';
 
-import '../models/event.dart';
 import '../models/band.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -64,8 +62,9 @@ class _HomeScreenState extends State<HomeScreen> {
     final Map<String, dynamic>? user = context.watch<UserProvider>().user;
     return Scaffold(
       appBar: AppBar(
-        title: Text(user == null ? 'Not logged in' : user['username']),
+        title: Text('Event Map App'),
       ),
+      drawer: user == null ? LoggedOutMenu() : LoggedInMenu(),
       body: Column(
         children: [
           Expanded(child: _views()[_viewIndex]),
@@ -75,13 +74,9 @@ class _HomeScreenState extends State<HomeScreen> {
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _viewIndex,
         onTap: (index) {
-          if (index == 2) {
-            Navigator.pushNamed(context, '/login_signup');
-          } else {
-            setState(() {
-              _viewIndex = index;
-            });
-          }
+          setState(() {
+            _viewIndex = index;
+          });
         },
         items: [
           BottomNavigationBarItem(
@@ -91,10 +86,6 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavigationBarItem(
             icon: Icon(Icons.map),
             label: 'Map',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.login),
-            label: 'Login/Signup',
           ),
         ],
       ),
