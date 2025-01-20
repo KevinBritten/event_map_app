@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/user_provider.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -48,6 +51,29 @@ Future<void> signOut() async {
     print('User signed out successfully!');
   } catch (e) {
     print('Error signing out: $e');
+  }
+}
+
+Future<void> setUserData(BuildContext context) async {
+  User? currentUser = FirebaseAuth.instance.currentUser;
+  if (currentUser == null) {
+    context.read<UserProvider>().clearUser();
+  } else {
+    try {
+      String uid = currentUser.uid;
+      DocumentSnapshot<Map<String, dynamic>> userDataSnapshot =
+          await FirebaseFirestore.instance.collection('users').doc(uid).get();
+
+      Map<String, dynamic>? userData = userDataSnapshot.data();
+
+      if (userData == null) {
+        throw Exception("User data not found in Firestore.");
+      }
+
+      context.read<UserProvider>().setUser(userData);
+    } catch (e) {
+      print("Error fetching user data: $e");
+    }
   }
 }
 
@@ -143,6 +169,9 @@ class _LoginSignupPageState extends State<LoginSignupPage>
                         await signIn(
                             email: _loginEmailController.text.trim(),
                             password: _loginPasswordController.text);
+                        await setUserData(context);
+                        Navigator.of(context)
+                            .popUntil((route) => route.isFirst);
                       }
                       print("user is: ");
                       print(FirebaseAuth.instance.currentUser!);
@@ -152,6 +181,8 @@ class _LoginSignupPageState extends State<LoginSignupPage>
                   ElevatedButton(
                     onPressed: () async {
                       await signOut();
+                      await setUserData(context);
+                      Navigator.of(context).popUntil((route) => route.isFirst);
                       print("user is: ");
                       print(FirebaseAuth.instance.currentUser);
                     },
@@ -216,6 +247,9 @@ class _LoginSignupPageState extends State<LoginSignupPage>
 
                         print(
                             'Signed up as: ${_signupUsernameController.text}');
+                        await setUserData(context);
+                        Navigator.of(context)
+                            .popUntil((route) => route.isFirst);
                       }
                     },
                     child: Text('Sign Up'),

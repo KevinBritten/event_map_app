@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/user_provider.dart';
 
 import 'playlist_view.dart';
 import 'map_view.dart';
@@ -58,9 +61,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final Map<String, dynamic>? user = context.watch<UserProvider>().user;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Music Finder'),
+        title: Text(user == null ? 'Not logged in' : user['username']),
       ),
       body: Column(
         children: [
