@@ -4,84 +4,114 @@ import '../models/venue.dart';
 
 // Venues
 final venueRockArena = Venue(
+  ownerUid: '1',
   name: "Rock Arena",
   latitude: 40.7128,
   longitude: -74.0060,
 );
 
 final venueJazzClub = Venue(
+  ownerUid: '1',
   name: "Jazz Club",
   latitude: 34.0522,
   longitude: -118.2437,
 );
 
 final venueJazzLounge = Venue(
+  ownerUid: '1',
   name: "Jazz Lounge",
   latitude: 51.5074,
   longitude: -0.1278,
 );
 
 final venuePopStadium = Venue(
+  ownerUid: '1',
   name: "Pop Stadium",
   latitude: 48.8566,
   longitude: 2.3522,
 );
 
 final venueIndieBar = Venue(
+  ownerUid: '1',
   name: "Indie Bar",
   latitude: 41.8781,
   longitude: -87.6298,
 );
 
 final venueEDMClub = Venue(
+  ownerUid: '1',
   name: "EDM Club",
   latitude: 35.6895,
   longitude: 139.6917,
 );
 
 final venueCountryHall = Venue(
+  ownerUid: '1',
   name: "Country Hall",
   latitude: 39.7392,
   longitude: -104.9903,
 );
 
 final venueHipHopClub = Venue(
+  ownerUid: '1',
   name: "Hip Hop Club",
   latitude: 34.0522,
   longitude: -118.2437,
 );
 
 final venueMetalArena = Venue(
+  ownerUid: '1',
   name: "Metal Arena",
   latitude: 37.7749,
   longitude: -122.4194,
 );
 
 // Existing bands
-final bandRockers =
-    Band(name: "The Rockers", currentSong: "Rock Anthem", events: []);
-final bandJazzMasters =
-    Band(name: "Jazz Masters", currentSong: "Smooth Jazz", events: []);
+final bandRockers = Band(
+    ownerUid: '1', name: "The Rockers", currentSong: "Rock Anthem", events: []);
+final bandJazzMasters = Band(
+    ownerUid: '1',
+    name: "Jazz Masters",
+    currentSong: "Smooth Jazz",
+    events: []);
 final bandPopStars =
-    Band(name: "Pop Stars", currentSong: "Pop Hit", events: []);
-final bandIndieVibes =
-    Band(name: "Indie Vibes", currentSong: "Indie Song", events: []);
-final bandElectronicBeats =
-    Band(name: "Electronic Beats", currentSong: "EDM Track", events: []);
-final bandCountryRoads =
-    Band(name: "Country Roads", currentSong: "Country Tune", events: []);
-final bandHipHopHeroes =
-    Band(name: "Hip Hop Heroes", currentSong: "Hip Hop Groove", events: []);
-final bandMetalHeads =
-    Band(name: "Metal Heads", currentSong: "Metal Riff", events: []);
+    Band(ownerUid: '1', name: "Pop Stars", currentSong: "Pop Hit", events: []);
+final bandIndieVibes = Band(
+    ownerUid: '1', name: "Indie Vibes", currentSong: "Indie Song", events: []);
+final bandElectronicBeats = Band(
+    ownerUid: '1',
+    name: "Electronic Beats",
+    currentSong: "EDM Track",
+    events: []);
+final bandCountryRoads = Band(
+    ownerUid: '1',
+    name: "Country Roads",
+    currentSong: "Country Tune",
+    events: []);
+final bandHipHopHeroes = Band(
+    ownerUid: '1',
+    name: "Hip Hop Heroes",
+    currentSong: "Hip Hop Groove",
+    events: []);
+final bandMetalHeads = Band(
+    ownerUid: '1', name: "Metal Heads", currentSong: "Metal Riff", events: []);
 
 // Additional bands
-final bandSoulSingers =
-    Band(name: "Soul Singers", currentSong: "Soulful Ballad", events: []);
-final bandBluesLegends =
-    Band(name: "Blues Legends", currentSong: "Blues Vibe", events: []);
-final bandSynthMasters =
-    Band(name: "Synth Masters", currentSong: "Synth Wave", events: []);
+final bandSoulSingers = Band(
+    ownerUid: '1',
+    name: "Soul Singers",
+    currentSong: "Soulful Ballad",
+    events: []);
+final bandBluesLegends = Band(
+    ownerUid: '1',
+    name: "Blues Legends",
+    currentSong: "Blues Vibe",
+    events: []);
+final bandSynthMasters = Band(
+    ownerUid: '1',
+    name: "Synth Masters",
+    currentSong: "Synth Wave",
+    events: []);
 
 // Events with updated venues and bands
 final List<Event> eventsList = [

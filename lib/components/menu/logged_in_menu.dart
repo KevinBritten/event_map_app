@@ -39,6 +39,31 @@ class LoggedInMenu extends StatelessWidget {
               Navigator.pop(context);
             },
           ),
+          ListTile(
+            leading: Icon(Icons.add),
+            title: Text('Add Band'),
+            onTap: () async {
+              Navigator.pop(context);
+
+              Navigator.pushNamed(context, '/add_band');
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.add),
+            title: Text('Add Venue'),
+            onTap: () async {
+              Navigator.pop(context);
+
+              Navigator.pushNamed(context, '/add_venue');
+            },
+          ),
+          ListTile(
+            leading: Icon(Icons.add),
+            title: Text('Add Event'),
+            onTap: () async {
+              Navigator.pop(context);
+            },
+          ),
         ],
       ),
     );
