@@ -53,7 +53,6 @@ class LoggedInMenu extends StatelessWidget {
             title: Text('Add Venue'),
             onTap: () async {
               Navigator.pop(context);
-
               Navigator.pushNamed(context, '/add_venue');
             },
           ),
@@ -62,6 +61,7 @@ class LoggedInMenu extends StatelessWidget {
             title: Text('Add Event'),
             onTap: () async {
               Navigator.pop(context);
+              Navigator.pushNamed(context, '/add_event');
             },
           ),
         ],

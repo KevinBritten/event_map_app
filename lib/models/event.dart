@@ -2,17 +2,19 @@ import 'band.dart';
 import 'venue.dart';
 
 class Event {
+  final String? id;
   final String title;
-  final Venue venue;
+  final String venueId;
   final DateTime dateTime;
   final double? price;
-  final List<Band> bands;
+  final List<String> bandIds;
 
   Event({
+    this.id,
     required this.title,
-    required this.venue,
+    required this.venueId,
     required this.dateTime,
-    required this.bands,
+    required this.bandIds,
     this.price,
   });
 }

@@ -26,12 +26,12 @@ class BandPage extends StatelessWidget {
             const SizedBox(height: 8),
             Expanded(
               child: ListView.builder(
-                itemCount: band.events.length,
+                itemCount: band.eventIds.length,
                 itemBuilder: (context, index) {
-                  final event = band.events[index];
+                  final event = band.eventIds[index];
                   return ListTile(
-                    title: Text(event.venue.name),
-                    subtitle: Text("Date & Time: ${event.dateTime}"),
+                    // title: Text(event.venue.name),
+                    // subtitle: Text("Date & Time: ${event.dateTime}"),
                     trailing: const Icon(Icons.arrow_forward),
                     onTap: () {
                       Navigator.pushNamed(

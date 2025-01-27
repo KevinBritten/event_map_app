@@ -10,6 +10,9 @@ import 'views/event_view.dart';
 import 'views/add_band_view.dart';
 import 'views/band_view.dart';
 import 'views/add_venue_view.dart';
+import 'views/add_event_view.dart';
+
+import 'views/addmockdata.dart';
 
 import 'data/test_data.dart';
 
@@ -19,7 +22,6 @@ Future<void> initFirebase() async {
 }
 
 void main() async {
-  addEventsToBands(eventsList); //TODO: remove when using database.
   await initFirebase();
   runApp(
     StreamProvider<Map<String, dynamic>?>.value(
@@ -44,7 +46,8 @@ class MyApp extends StatelessWidget {
         '/band': (context) => BandPage(),
         '/login_signup': (context) => LoginSignupPage(),
         '/add_band': (context) => AddBandPage(),
-        '/add_venue': (context) => AddVenuePage()
+        '/add_venue': (context) => AddVenuePage(),
+        '/add_event': (context) => AddEventPage(),
       },
     );
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
+import '../services/band_service.dart';
+import '../models/band.dart';
 
 class AddBandPage extends StatefulWidget {
   @override
@@ -29,12 +31,12 @@ class _AddBandPageState extends State<AddBandPage> {
     });
 
     try {
-      await FirebaseFirestore.instance.collection('bands').add({
-        'ownerUid': ownerUid,
-        'name': name,
-        'currentSong': currentSong,
-        'eventIds': [],
-      });
+      Band band = Band(
+          ownerUid: ownerUid,
+          name: name,
+          currentSong: currentSong,
+          eventIds: []);
+      await BandService().saveBand(band);
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Band added successfully!')),

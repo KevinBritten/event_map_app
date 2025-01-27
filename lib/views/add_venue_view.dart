@@ -1,6 +1,9 @@
+import 'package:event_map_app/services/venue_service.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
+import '../services/event_service.dart';
+import '../models/venue.dart';
 
 class AddVenuePage extends StatefulWidget {
   @override
@@ -26,7 +29,6 @@ class _AddVenuePageState extends State<AddVenuePage> {
       return;
     }
 
-    // Convert latitude and longitude to double
     double? latitude;
     double? longitude;
 
@@ -46,12 +48,12 @@ class _AddVenuePageState extends State<AddVenuePage> {
     });
 
     try {
-      await FirebaseFirestore.instance.collection('venues').add({
-        'ownerUid': ownerUid,
-        'name': name,
-        'latitude': latitude,
-        'longitude': longitude,
-      });
+      Venue venue = new Venue(
+          ownerUid: ownerUid,
+          name: name,
+          latitude: latitude,
+          longitude: longitude);
+      await VenueService().saveVenue(venue);
 
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text('Venue added successfully!')));

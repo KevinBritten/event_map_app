@@ -1,3 +1,4 @@
+import 'package:event_map_app/models/band_event_venue.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../data/test_data.dart';
@@ -6,9 +7,9 @@ import '../models/band.dart';
 import '../models/venue.dart';
 
 class MapView extends StatefulWidget {
-  final Event? event;
+  final BandEventVenue item;
 
-  const MapView({Key? key, this.event}) : super(key: key);
+  const MapView({Key? key, required this.item}) : super(key: key);
 
   @override
   _MapViewState createState() => _MapViewState();
@@ -21,27 +22,28 @@ class _MapViewState extends State<MapView> {
   @override
   void initState() {
     super.initState();
-    if (widget.event != null) {
-      _addMarker(widget.event!);
+    if (widget.item != null) {
+      _addMarker(widget.item!);
     }
   }
 
   @override
   void didUpdateWidget(covariant MapView oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.event != oldWidget.event && widget.event != null) {
-      _addMarker(widget.event!);
-      _moveCamera(widget.event!);
+    if (widget.item != oldWidget.item && widget.item != null) {
+      _addMarker(widget.item!);
+      _moveCamera(widget.item!.venue as Venue);
     }
   }
 
-  void _addMarker(Event event) {
+  void _addMarker(BandEventVenue item) {
     final marker = Marker(
-      markerId: MarkerId(event.venue.name),
-      position: LatLng(event.venue.latitude, event.venue.longitude),
+      markerId: MarkerId(item.venue!.name),
+      position: LatLng(item.venue!.latitude, item.venue!.longitude),
       infoWindow: InfoWindow(
-        title: event.venue.name,
-        snippet: '${event.dateTime.toLocal()} - \$${event.price ?? "Free"}',
+        title: item.venue!.name,
+        snippet:
+            '${item.event!.dateTime.toLocal()} - \$${item.event!.price ?? "Free"}',
       ),
       icon: BitmapDescriptor.defaultMarkerWithHue(BitmapDescriptor.hueAzure),
     );
@@ -52,11 +54,11 @@ class _MapViewState extends State<MapView> {
     });
   }
 
-  void _moveCamera(Event event) {
+  void _moveCamera(Venue venue) {
     _controller.animateCamera(
       CameraUpdate.newCameraPosition(
         CameraPosition(
-          target: LatLng(event.venue.latitude, event.venue.longitude),
+          target: LatLng(venue.latitude, venue.longitude),
           zoom: 14,
         ),
       ),
@@ -74,8 +76,8 @@ class _MapViewState extends State<MapView> {
       markers: _markers,
       onMapCreated: (GoogleMapController controller) {
         _controller = controller;
-        if (widget.event != null) {
-          _moveCamera(widget.event!);
+        if (widget.item != null) {
+          _moveCamera(widget.item.venue!);
         }
       },
     );

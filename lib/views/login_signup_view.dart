@@ -111,7 +111,6 @@ class _LoginSignupPageState extends State<LoginSignupPage>
       body: TabBarView(
         controller: _tabController,
         children: [
-          // Login Tab
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Form(
