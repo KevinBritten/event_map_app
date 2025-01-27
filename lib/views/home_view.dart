@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../providers/user_provider.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import '../components/menu/logged_out_menu.dart';
 import '../components/menu/logged_in_menu.dart';
@@ -59,7 +59,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic>? user = context.watch<UserProvider>().user;
+    final Map<String, dynamic>? user = context.watch<Map<String, dynamic>?>();
     return Scaffold(
       appBar: AppBar(
         title: Text('Event Map App'),

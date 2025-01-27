@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../providers/user_provider.dart';
-
 import 'package:firebase_auth/firebase_auth.dart';
 
 class LoggedInMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final Map<String, dynamic>? user = context.watch<UserProvider>().user;
+    final Map<String, dynamic>? user = context.watch<Map<String, dynamic>?>();
 
     return Drawer(
       child: ListView(
@@ -38,7 +36,6 @@ class LoggedInMenu extends StatelessWidget {
             title: Text('Logout'),
             onTap: () async {
               await FirebaseAuth.instance.signOut();
-              context.read<UserProvider>().clearUser();
               Navigator.pop(context);
             },
           ),
